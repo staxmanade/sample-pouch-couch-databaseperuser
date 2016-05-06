@@ -6,13 +6,22 @@ What I wanted was something where each and every single user who **registered** 
 
 # Project breakdown
 
-1. [The Tech](#the-tech)
+1. [Some ToDos](#some-todos)
+- [The Tech](#the-tech)
 - [The Server](#the-server)
   - [What it does](#what-it-does)
   - [Server Setup](#server-setup)
 - [The Client](#the-client)
   - [Client Setup](#client-setup)
 
+
+<a name="#some-todos"></a>
+# Some Todos
+
+- [ ] Modify the databaseperuser couch plugin to not add users as admins and instead as members.
+- [ ] Find a solution to password recovery (for the registered user).
+- [ ] Show how to deploy this to [Digital Ocean](https://www.digitalocean.com/?refcode=451940554550)
+- [ ] Finish filling out docs
 
 <a name="#the-tech"></a>
 # The Tech
