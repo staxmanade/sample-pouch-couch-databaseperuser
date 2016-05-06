@@ -114,6 +114,18 @@ want to see one example of how others handle this with a docker container, take 
 
 > Should return `{"error":"forbidden","reason":"Only admins can access _all_docs of system databases."}`
 
+The whole thing (for easier container/config changes)
+
+```
+docker stop couchdbperuser && \
+docker rm couchdbperuser && \
+docker build -t couchdbperuser . && \
+docker run -d -p 5984:5984 --name couchdbperuser -v $(pwd)/couchdb-data:/usr/local/var/lib/couchdb couchdbperuser && \
+docker ps
+```
+
+Snoop around inside the container: `docker exec -i -t couchdbperuser /bin/bash`
+
 <a name="#the-client"></a>
 # The Client
 
