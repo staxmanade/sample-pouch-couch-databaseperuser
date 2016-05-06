@@ -145,13 +145,14 @@ Now setup the client project.
 3. Once you have the [Server Setup](#server-setup), get the ip of the server (EX: `docker-machine ip default`)
 and update `client/src/config.js` with the correct path to the PouchDB server.
 4. Run the site in a simple static file server. (`npm start`)
+5. Open this url in the browser [http://localhost:1337/index.html](http://localhost:1337/index.html)
 
 > ## But the sample is slow to load...
 >
 > For better local dev performance, if you want JSPM to bundle the JS and load faster
 > try running
 >
-> `jspm bundle app -wid`
+> `jspm bundle app -wid` (and keep it running)
 >
 > This will watch for changes, rebuild the `build.js` file whenever you make changes to the project. When you reload
 > the page it's much faster...
