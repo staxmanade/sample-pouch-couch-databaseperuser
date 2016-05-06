@@ -1,4 +1,4 @@
-:warning::warning::warning: update or figure out a better password strategy than storign plain text in `config/couchdb/local.ini` :warning::warning::warning:
+:warning::warning::warning: update or figure out a better password strategy than storing plain text in `config/couchdb/local.ini` :warning::warning::warning:
 
 # docker build
 
