@@ -16,6 +16,7 @@ If you discover any potential security holes or other points of interest that yo
 # Project breakdown
 
 1. [Some ToDos](#some-todos)
+- [Get The Codes](#the-codes)
 - [The Tech](#the-tech)
 - [The Server](#the-server)
   - [What it does](#what-it-does)
@@ -30,12 +31,9 @@ If you discover any potential security holes or other points of interest that yo
 
 While the prototype is currently working, there are some interesting TODO's that I'd like to accomplish (including here instead of in the github issues for visibility).
 
-- [ ] Modify the databaseperuser couch plugin to not add users as admins and instead as members. (Note: in a fork of the
-`couchperuser` repo [this commit](https://github.com/jspenc72/couchperuser-livingroom/commit/49062327db9f404f84651b63a110ff9d1f9f3b08)
-shows an example of how to include the user in the members (but doesn't remove the admin rights) - something to consider)
-- [ ] Find a solution to password recovery (for the registered user). This may require a separate web/app/server.
+- [ ] Find a solution to password recovery (for the registered user). This may require a separate web/app/server where the server has admin rights. Possibly send email with token, if link clicked then (gather new password from user) and use admin account to reset password in db.
 - [ ] Show how to deploy this to [Digital Ocean](https://www.digitalocean.com/?refcode=451940554550)
-- [ ] Finish filling out docs
+
 
 <a name="#the-tech"></a>
 # The Tech
@@ -43,15 +41,28 @@ shows an example of how to include the user in the members (but doesn't remove t
 This project was pieced together with an assortment of the following tech.
 
 - Server
-  - [CouchDB](http://couchdb.apache.org)
-  - [Docker](https://www.docker.com)
+  - [CouchDB](http://couchdb.apache.org) (The back-end database)
+  - [Docker](https://www.docker.com) (Some dev-opsey thing)
 
 - Client
-  - [PouchDB](https://pouchdb.com)
-  - [pouchdb-authentication](https://github.com/nolanlawson/pouchdb-authentication)
-  - [JSPM/SystemJS](http://jspm.io)
-  - [React](https://facebook.github.io/react)
-  - [Babel](https://babeljs.io)
+  - [PouchDB](https://pouchdb.com) (The front-end database)
+  - [pouchdb-authentication](https://github.com/nolanlawson/pouchdb-authentication) (Easier CouchDB authentication)
+  - [JSPM/SystemJS](http://jspm.io) (Browser Package Management)
+  - [React](https://facebook.github.io/react) (U.I. Framework)
+  - [Babel](https://babeljs.io) (Let's use the newer-cooler javascript)
+
+<a name="#the-codes"></a>
+# Get the Codes
+
+The project is currently using a submodule (pointing to [staxmanade/couchperuser](https://github.com/staxmanade/couchperuser)). This repo hosts a plugin for couchdb that implements the couchperuser portion of the setup. The [server/Dockerfile](server/Dockerfile) specifically looks for this submodule source code to build into the container.
+
+To get the code submodule run
+
+1. Clone the repo `https://github.com/staxmanade/sample-pouch-couch-databaseperuser.git`
+2. CD into `cd sample-pouch-couch-databaseperuser`
+3. `git submodule update  --init` <-- initialize the submodule.
+4. `cd `server/test && npm install`
+5. Once you follow the docker build steps below, you can update the test file to point to you're local couchdb instance and run `npm test` which will run some unit tests against the couch database.
 
 <a name="#the-server"></a>
 # The Server
@@ -117,11 +128,13 @@ want to see one example of how others handle this with a docker container, take 
 The whole thing (for easier container/config changes)
 
 ```
-docker stop couchdbperuser && \
-docker rm couchdbperuser && \
+docker stop couchdbperuser; \
+docker rm couchdbperuser; \
 docker build -t couchdbperuser . && \
 docker run -d -p 5984:5984 --name couchdbperuser -v $(pwd)/couchdb-data:/usr/local/var/lib/couchdb couchdbperuser && \
-docker ps
+docker ps && \
+sleep 2 &&
+curl http://$(docker-machine ip default):5984
 ```
 
 Snoop around inside the container: `docker exec -i -t couchdbperuser /bin/bash`
