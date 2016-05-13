@@ -30,7 +30,7 @@ export default class AuthService extends EventEmitter {
     }
 
     setupDbSync(name) {
-        if (!this.remoteDb) {
+        if (!this.remoteDb && name) {
             let hexUsername = this.toHex(name);
             this.remoteDb = new PouchDB(`${config.databaseBaseUrl}/userdb-${hexUsername}`, { skipSetup: true });
             this.localDb = new PouchDB(`local_db_${name}`);
