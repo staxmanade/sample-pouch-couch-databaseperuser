@@ -47,6 +47,9 @@ var deleteUser = function(name) {
                 jar: adminCookieJar
             }, function(err, request, body) {
                 if(!body.ok || err) {
+                    if (body && body.error === "not_found") {
+                        return resolve();
+                    }
                     console.error("Error deleting user:", err, body)
                     return reject(err, body);
                 }
@@ -66,6 +69,9 @@ var deleteDatabase = function(name) {
             jar: adminCookieJar
         }, function (err, response, body) {
             if(!body.ok || err) {
+                if (body && body.error === "not_found") {
+                    return resolve();
+                }
                 console.error("Error deleting database: ", err, body)
                 return reject(err, body);
             }
