@@ -225,4 +225,21 @@ describe("pouch per user database server", function () {
 
     });
 
+
+    describe("anonymous user", function(){
+        it("should not have access to /_all_dbs", function(){
+            return new Promise(function(resolve, reject){
+
+                request({
+                    uri: serverRootUrl + "/_all_dbs",
+                    json: true,
+                }, function(err, res, body) {
+                    //expect(err).to.not.be.null();
+                    expect(body).to.deep.equal(["_replicator", "_users"]);
+                })
+
+            })
+        });
+    });
+
 });
