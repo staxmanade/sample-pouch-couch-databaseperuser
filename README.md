@@ -69,7 +69,7 @@ To get the code submodule run
 1. Clone the repo `https://github.com/staxmanade/sample-pouch-couch-databaseperuser.git`
 2. CD into `cd sample-pouch-couch-databaseperuser`
 3. `git submodule update  --init` <-- initialize the submodule.
-4. `cd `server/test && npm install`
+4. `cd ./server/test && npm install`
 5. Once you follow the docker build steps below, you can update the test file to point to you're local couchdb instance and run `npm test` which will run some unit tests against the couch database.
 
 <a name="#the-server"></a>
