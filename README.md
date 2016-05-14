@@ -1,5 +1,13 @@
 # What is this?
 
+# :warning: Security?
+
+So the more I dug into this the more I learned that CouchDB by itself is not ready to become a straight api server (at least in the way I wanted to use it)...
+
+There are couch api's like `/_all_dbs` or `/_utils` which are accessable by the public. So in this example when a new database is created for each user - any public user can request the api and get a list of all users in the database. Not an ideal situation... (I hope this gets improved in CouchDB) - but in the meantime I'm looking into things like [superlogin](https://github.com/colinskow/superlogin) or [hood.ie](http://hood.ie).
+
+I still think couch in combination with pouch is a good toolset, but need to work through and setup an api server to block certain access to api's.
+
 ## Reason for being:
 
 This prototype came out of my personal need to play with [PouchDB](https://pouchdb.com) and [CouchDB](http://couchdb.apache.org) where I wanted to explore what it would take to allow each and every single user who **registered** with the applicaiton to acquire their own database. A database where each user (and only that user) has permission to the data in the database (except of course the server-admin user).
