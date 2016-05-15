@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    build: ./app/
+    ports:
+     - "3000:3000"
+     - "5858:5858"
+    volumes:
+     - ./app/:/var/www/app/current
+    depends_on:
+     - couchdb
+  couchdb:
+    build: ./couchdb/
+    ports:
+     - "5984:5984"
+    volumes:
+     - ./couchdb/couchdb-data:/usr/local/var/lib/couchdb

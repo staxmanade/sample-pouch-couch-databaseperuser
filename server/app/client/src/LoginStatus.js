@@ -18,8 +18,9 @@ export default class LoginStatus extends React.Component {
 
     refreshState() {
         this.props.authService.getCurrentUser().then(user => {
+            console.log("jj", user);
             this.setState({
-                loggedIn: !!user.name,
+                loggedIn: !!(user && user.user_id) || false,
                 user: user
             });
         }, err => {
@@ -43,7 +44,7 @@ export default class LoginStatus extends React.Component {
             }
             visualStateStyle = { backgroundColor: "red" };
         } else if (this.state.loggedIn === true) {
-            visualState = `${this.state.user.name} is logged in.`;
+            visualState = `${this.state.user.user_id} is logged in.`;
             visualStateStyle = { backgroundColor: "green" };
         }
 

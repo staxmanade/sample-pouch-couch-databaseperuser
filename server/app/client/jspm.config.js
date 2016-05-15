@@ -47,7 +47,6 @@ SystemJS.config({
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "plugin-babel": "npm:systemjs-plugin-babel@0.0.9",
     "pouchdb": "github:pouchdb/pouchdb@5.3.2",
-    "pouchdb-authentication": "npm:pouchdb-authentication@0.5.1",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "punycode": "github:jspm/nodelibs-punycode@0.2.0-alpha",
     "querystring": "github:jspm/nodelibs-querystring@0.2.0-alpha",
@@ -55,6 +54,7 @@ SystemJS.config({
     "react-dom": "npm:react-dom@15.0.1",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
+    "superlogin-client": "npm:superlogin-client@0.2.0",
     "tls": "github:jspm/nodelibs-tls@0.2.0-alpha",
     "tty": "github:jspm/nodelibs-tty@0.2.0-alpha",
     "tweetnacl": "npm:tweetnacl@0.13.3",
@@ -114,11 +114,6 @@ SystemJS.config({
         "zlib-browserify": "npm:browserify-zlib@0.1.4"
       }
     },
-    "npm:abstract-leveldown@0.12.3": {
-      "map": {
-        "xtend": "npm:xtend@3.0.0"
-      }
-    },
     "npm:abstract-leveldown@2.4.1": {
       "map": {
         "xtend": "npm:xtend@4.0.1"
@@ -141,6 +136,11 @@ SystemJS.config({
         "bn.js": "npm:bn.js@4.11.3",
         "inherits": "npm:inherits@2.0.1",
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
+      }
+    },
+    "npm:axios@0.9.1": {
+      "map": {
+        "follow-redirects": "npm:follow-redirects@0.0.7"
       }
     },
     "npm:babel-code-frame@6.7.7": {
@@ -209,11 +209,6 @@ SystemJS.config({
         "babel-runtime": "npm:babel-runtime@5.8.38"
       }
     },
-    "npm:bl@0.8.2": {
-      "map": {
-        "readable-stream": "npm:readable-stream@1.0.34"
-      }
-    },
     "npm:bl@1.0.3": {
       "map": {
         "readable-stream": "npm:readable-stream@2.0.6"
@@ -278,7 +273,7 @@ SystemJS.config({
     "npm:browserify-zlib@0.1.4": {
       "map": {
         "pako": "npm:pako@0.2.8",
-        "readable-stream": "npm:readable-stream@2.0.6"
+        "readable-stream": "npm:readable-stream@2.1.2"
       }
     },
     "npm:buffer@4.6.0": {
@@ -286,17 +281,6 @@ SystemJS.config({
         "base64-js": "npm:base64-js@1.1.2",
         "ieee754": "npm:ieee754@1.1.6",
         "isarray": "npm:isarray@1.0.0"
-      }
-    },
-    "npm:bytewise-core@1.2.3": {
-      "map": {
-        "typewise-core": "npm:typewise-core@1.2.0"
-      }
-    },
-    "npm:bytewise@1.1.0": {
-      "map": {
-        "bytewise-core": "npm:bytewise-core@1.2.3",
-        "typewise": "npm:typewise@1.0.3"
       }
     },
     "npm:chalk@1.1.3": {
@@ -372,19 +356,14 @@ SystemJS.config({
         "assert-plus": "npm:assert-plus@1.0.0"
       }
     },
+    "npm:debug-logger@0.4.1": {
+      "map": {
+        "debug": "npm:debug@2.2.0"
+      }
+    },
     "npm:debug@2.2.0": {
       "map": {
         "ms": "npm:ms@0.7.1"
-      }
-    },
-    "npm:deferred-leveldown@0.2.0": {
-      "map": {
-        "abstract-leveldown": "npm:abstract-leveldown@0.12.3"
-      }
-    },
-    "npm:deferred-leveldown@1.2.1": {
-      "map": {
-        "abstract-leveldown": "npm:abstract-leveldown@2.4.1"
       }
     },
     "npm:des.js@1.0.0": {
@@ -428,30 +407,6 @@ SystemJS.config({
         "once": "npm:once@1.3.3"
       }
     },
-    "npm:end-stream@0.1.0": {
-      "map": {
-        "write-stream": "npm:write-stream@0.4.3"
-      }
-    },
-    "npm:errno@0.1.4": {
-      "map": {
-        "prr": "npm:prr@0.0.0"
-      }
-    },
-    "npm:es3ify@0.1.4": {
-      "map": {
-        "esprima-fb": "npm:esprima-fb@3001.1.0-dev-harmony-fb",
-        "jstransform": "npm:jstransform@3.0.0",
-        "through": "npm:through@2.3.8"
-      }
-    },
-    "npm:es3ify@0.2.0": {
-      "map": {
-        "esprima": "npm:esprima@2.7.2",
-        "jstransform": "npm:jstransform@3.0.0",
-        "through": "npm:through@2.3.8"
-      }
-    },
     "npm:es5-ext@0.10.11": {
       "map": {
         "es6-iterator": "npm:es6-iterator@2.0.0",
@@ -476,14 +431,6 @@ SystemJS.config({
         "create-hash": "npm:create-hash@1.1.2"
       }
     },
-    "npm:falafel@1.2.0": {
-      "map": {
-        "acorn": "npm:acorn@1.2.2",
-        "foreach": "npm:foreach@2.0.5",
-        "isarray": "npm:isarray@0.0.1",
-        "object-keys": "npm:object-keys@1.0.9"
-      }
-    },
     "npm:fbjs@0.8.1": {
       "map": {
         "babel-plugin-syntax-flow": "npm:babel-plugin-syntax-flow@6.5.0",
@@ -494,20 +441,17 @@ SystemJS.config({
         "ua-parser-js": "npm:ua-parser-js@0.7.10"
       }
     },
+    "npm:follow-redirects@0.0.7": {
+      "map": {
+        "debug": "npm:debug@2.2.0",
+        "stream-consume": "npm:stream-consume@0.1.0"
+      }
+    },
     "npm:form-data@1.0.0-rc4": {
       "map": {
         "async": "npm:async@1.5.2",
         "combined-stream": "npm:combined-stream@1.0.5",
         "mime-types": "npm:mime-types@2.1.10"
-      }
-    },
-    "npm:fruitdown@1.0.1": {
-      "map": {
-        "abstract-leveldown": "npm:abstract-leveldown@0.12.3",
-        "argsarray": "npm:argsarray@0.0.1",
-        "d64": "npm:d64@1.0.0",
-        "inherits": "npm:inherits@2.0.1",
-        "tiny-queue": "npm:tiny-queue@0.2.0"
       }
     },
     "npm:fstream@1.0.8": {
@@ -608,40 +552,16 @@ SystemJS.config({
         "sshpk": "npm:sshpk@1.8.3"
       }
     },
-    "npm:humble-localstorage@1.4.2": {
-      "map": {
-        "has-localstorage": "npm:has-localstorage@1.0.1",
-        "localstorage-memory": "npm:localstorage-memory@1.0.2"
-      }
-    },
     "npm:hyperquest@1.2.0": {
       "map": {
         "duplexer2": "npm:duplexer2@0.0.2",
         "through2": "npm:through2@0.6.5"
       }
     },
-    "npm:immediate@3.0.5": {
-      "map": {
-        "inline-process-browser": "npm:inline-process-browser@1.0.0",
-        "unreachable-branch-transform": "npm:unreachable-branch-transform@0.3.0"
-      }
-    },
     "npm:inflight@1.0.4": {
       "map": {
         "once": "npm:once@1.3.3",
         "wrappy": "npm:wrappy@1.0.1"
-      }
-    },
-    "npm:inline-process-browser@1.0.0": {
-      "map": {
-        "falafel": "npm:falafel@1.2.0",
-        "through2": "npm:through2@0.6.5"
-      }
-    },
-    "npm:inline-process-browser@2.0.1": {
-      "map": {
-        "falafel": "npm:falafel@1.2.0",
-        "through2": "npm:through2@0.6.5"
       }
     },
     "npm:invariant@2.2.1": {
@@ -693,41 +613,6 @@ SystemJS.config({
         "verror": "npm:verror@1.3.6"
       }
     },
-    "npm:jstransform@3.0.0": {
-      "map": {
-        "base62": "npm:base62@0.1.1",
-        "esprima-fb": "npm:esprima-fb@3001.1.0-dev-harmony-fb",
-        "source-map": "npm:source-map@0.1.31"
-      }
-    },
-    "npm:level-errors@1.0.4": {
-      "map": {
-        "errno": "npm:errno@0.1.4"
-      }
-    },
-    "npm:level-iterator-stream@1.3.1": {
-      "map": {
-        "inherits": "npm:inherits@2.0.1",
-        "level-errors": "npm:level-errors@1.0.4",
-        "readable-stream": "npm:readable-stream@1.0.34",
-        "xtend": "npm:xtend@4.0.1"
-      }
-    },
-    "npm:level-sublevel@6.5.4": {
-      "map": {
-        "bytewise": "npm:bytewise@1.1.0",
-        "levelup": "npm:levelup@0.19.1",
-        "ltgt": "npm:ltgt@2.1.2",
-        "pull-stream": "npm:pull-stream@2.21.0",
-        "typewiselite": "npm:typewiselite@1.0.0",
-        "xtend": "npm:xtend@4.0.1"
-      }
-    },
-    "npm:level-write-stream@1.0.0": {
-      "map": {
-        "end-stream": "npm:end-stream@0.1.0"
-      }
-    },
     "npm:leveldown@1.4.4": {
       "map": {
         "abstract-leveldown": "npm:abstract-leveldown@2.4.1",
@@ -735,48 +620,6 @@ SystemJS.config({
         "fast-future": "npm:fast-future@1.0.1",
         "nan": "npm:nan@2.2.1",
         "prebuild": "npm:prebuild@2.9.2"
-      }
-    },
-    "npm:levelup@0.19.1": {
-      "map": {
-        "bl": "npm:bl@0.8.2",
-        "deferred-leveldown": "npm:deferred-leveldown@0.2.0",
-        "errno": "npm:errno@0.1.4",
-        "node-semver": "npm:semver@5.1.0",
-        "prr": "npm:prr@0.0.0",
-        "readable-stream": "npm:readable-stream@1.0.34",
-        "semver": "npm:semver@5.1.0",
-        "xtend": "npm:xtend@3.0.0"
-      }
-    },
-    "npm:levelup@1.3.1": {
-      "map": {
-        "deferred-leveldown": "npm:deferred-leveldown@1.2.1",
-        "level-codec": "npm:level-codec@6.1.0",
-        "level-errors": "npm:level-errors@1.0.4",
-        "level-iterator-stream": "npm:level-iterator-stream@1.3.1",
-        "node-semver": "npm:semver@5.1.0",
-        "prr": "npm:prr@1.0.1",
-        "semver": "npm:semver@5.1.0",
-        "xtend": "npm:xtend@4.0.1"
-      }
-    },
-    "npm:lie@3.0.2": {
-      "map": {
-        "es3ify": "npm:es3ify@0.1.4",
-        "immediate": "npm:immediate@3.0.5",
-        "inline-process-browser": "npm:inline-process-browser@1.0.0",
-        "unreachable-branch-transform": "npm:unreachable-branch-transform@0.3.0"
-      }
-    },
-    "npm:localstorage-down@0.6.6": {
-      "map": {
-        "abstract-leveldown": "npm:abstract-leveldown@0.12.3",
-        "argsarray": "npm:argsarray@0.0.1",
-        "d64": "npm:d64@1.0.0",
-        "humble-localstorage": "npm:humble-localstorage@1.4.2",
-        "inherits": "npm:inherits@2.0.1",
-        "tiny-queue": "npm:tiny-queue@0.2.0"
       }
     },
     "npm:lodash.pad@4.3.0": {
@@ -800,14 +643,6 @@ SystemJS.config({
     "npm:loose-envify@1.1.0": {
       "map": {
         "js-tokens": "npm:js-tokens@1.0.3"
-      }
-    },
-    "npm:memdown@1.1.2": {
-      "map": {
-        "abstract-leveldown": "npm:abstract-leveldown@2.4.1",
-        "functional-red-black-tree": "npm:functional-red-black-tree@1.0.1",
-        "inherits": "npm:inherits@2.0.1",
-        "ltgt": "npm:ltgt@1.0.2"
       }
     },
     "npm:miller-rabin@4.0.0": {
@@ -913,39 +748,6 @@ SystemJS.config({
         "pinkie": "npm:pinkie@2.0.4"
       }
     },
-    "npm:pouchdb-authentication@0.5.1": {
-      "map": {
-        "inherits": "npm:inherits@2.0.1",
-        "lie": "npm:lie@3.0.2",
-        "pouchdb": "npm:pouchdb@5.2.1",
-        "pouchdb-extend": "npm:pouchdb-extend@0.1.2",
-        "url-join": "npm:url-join@1.1.0"
-      }
-    },
-    "npm:pouchdb@5.2.1": {
-      "map": {
-        "argsarray": "npm:argsarray@0.0.1",
-        "debug": "npm:debug@2.2.0",
-        "double-ended-queue": "npm:double-ended-queue@2.0.0-0",
-        "es3ify": "npm:es3ify@0.2.0",
-        "fruitdown": "npm:fruitdown@1.0.1",
-        "inherits": "npm:inherits@2.0.1",
-        "js-extend": "npm:js-extend@1.0.1",
-        "level-sublevel": "npm:level-sublevel@6.5.4",
-        "level-write-stream": "npm:level-write-stream@1.0.0",
-        "levelup": "npm:levelup@1.3.1",
-        "lie": "npm:lie@3.0.2",
-        "localstorage-down": "npm:localstorage-down@0.6.6",
-        "memdown": "npm:memdown@1.1.2",
-        "pouchdb-collate": "npm:pouchdb-collate@1.2.0",
-        "pouchdb-collections": "npm:pouchdb-collections@1.0.1",
-        "request": "npm:request@2.67.0",
-        "scope-eval": "npm:scope-eval@0.0.3",
-        "spark-md5": "npm:spark-md5@2.0.0",
-        "through2": "npm:through2@2.0.0",
-        "vuvuzela": "npm:vuvuzela@1.0.2"
-      }
-    },
     "npm:prebuild@2.9.2": {
       "map": {
         "async": "npm:async@1.5.2",
@@ -978,11 +780,6 @@ SystemJS.config({
         "create-hash": "npm:create-hash@1.1.2",
         "parse-asn1": "npm:parse-asn1@5.0.0",
         "randombytes": "npm:randombytes@2.0.3"
-      }
-    },
-    "npm:pull-stream@2.21.0": {
-      "map": {
-        "pull-core": "npm:pull-core@1.0.0"
       }
     },
     "npm:pump@1.0.1": {
@@ -1029,37 +826,19 @@ SystemJS.config({
         "core-util-is": "npm:core-util-is@1.0.2",
         "inherits": "npm:inherits@2.0.1",
         "isarray": "npm:isarray@1.0.0",
-        "process-nextick-args": "npm:process-nextick-args@1.0.6",
+        "process-nextick-args": "npm:process-nextick-args@1.0.7",
         "string_decoder": "npm:string_decoder@0.10.31",
         "util-deprecate": "npm:util-deprecate@1.0.2"
       }
     },
-    "npm:readable-stream@2.1.0": {
+    "npm:readable-stream@2.1.2": {
       "map": {
         "core-util-is": "npm:core-util-is@1.0.2",
         "inherits": "npm:inherits@2.0.1",
-        "inline-process-browser": "npm:inline-process-browser@2.0.1",
         "isarray": "npm:isarray@1.0.0",
-        "process-nextick-args": "npm:process-nextick-args@1.0.6",
+        "process-nextick-args": "npm:process-nextick-args@1.0.7",
         "string_decoder": "npm:string_decoder@0.10.31",
-        "unreachable-branch-transform": "npm:unreachable-branch-transform@0.5.1",
         "util-deprecate": "npm:util-deprecate@1.0.2"
-      }
-    },
-    "npm:recast@0.10.43": {
-      "map": {
-        "ast-types": "npm:ast-types@0.8.15",
-        "esprima-fb": "npm:esprima-fb@15001.1001.0-dev-harmony-fb",
-        "private": "npm:private@0.1.6",
-        "source-map": "npm:source-map@0.5.5"
-      }
-    },
-    "npm:recast@0.11.5": {
-      "map": {
-        "ast-types": "npm:ast-types@0.8.16",
-        "esprima": "npm:esprima@2.7.2",
-        "private": "npm:private@0.1.6",
-        "source-map": "npm:source-map@0.5.5"
       }
     },
     "npm:repeating@1.1.3": {
@@ -1114,11 +893,6 @@ SystemJS.config({
         "hoek": "npm:hoek@2.16.3"
       }
     },
-    "npm:source-map@0.1.31": {
-      "map": {
-        "amdefine": "npm:amdefine@1.0.0"
-      }
-    },
     "npm:sshpk@1.8.3": {
       "map": {
         "asn1": "npm:asn1@0.2.3",
@@ -1143,7 +917,7 @@ SystemJS.config({
       "map": {
         "builtin-status-codes": "npm:builtin-status-codes@2.0.0",
         "inherits": "npm:inherits@2.0.1",
-        "readable-stream": "npm:readable-stream@2.1.0",
+        "readable-stream": "npm:readable-stream@2.1.2",
         "to-arraybuffer": "npm:to-arraybuffer@1.0.1",
         "xtend": "npm:xtend@4.0.1"
       }
@@ -1151,6 +925,13 @@ SystemJS.config({
     "npm:strip-ansi@3.0.1": {
       "map": {
         "ansi-regex": "npm:ansi-regex@2.0.0"
+      }
+    },
+    "npm:superlogin-client@0.2.0": {
+      "map": {
+        "axios": "npm:axios@0.9.1",
+        "debug-logger": "npm:debug-logger@0.4.1",
+        "events": "npm:events@1.1.0"
       }
     },
     "npm:tar-fs@1.12.0": {
@@ -1164,7 +945,7 @@ SystemJS.config({
       "map": {
         "bl": "npm:bl@1.0.3",
         "end-of-stream": "npm:end-of-stream@1.1.0",
-        "readable-stream": "npm:readable-stream@2.1.0",
+        "readable-stream": "npm:readable-stream@2.1.2",
         "xtend": "npm:xtend@4.0.1"
       }
     },
@@ -1179,30 +960,6 @@ SystemJS.config({
       "map": {
         "readable-stream": "npm:readable-stream@1.0.34",
         "xtend": "npm:xtend@4.0.1"
-      }
-    },
-    "npm:through2@2.0.0": {
-      "map": {
-        "readable-stream": "npm:readable-stream@2.0.6",
-        "xtend": "npm:xtend@4.0.1"
-      }
-    },
-    "npm:typewise@1.0.3": {
-      "map": {
-        "typewise-core": "npm:typewise-core@1.2.0"
-      }
-    },
-    "npm:unreachable-branch-transform@0.3.0": {
-      "map": {
-        "esmangle-evaluator": "npm:esmangle-evaluator@1.0.0",
-        "recast": "npm:recast@0.10.43",
-        "through2": "npm:through2@0.6.5"
-      }
-    },
-    "npm:unreachable-branch-transform@0.5.1": {
-      "map": {
-        "esmangle-evaluator": "npm:esmangle-evaluator@1.0.0",
-        "recast": "npm:recast@0.11.5"
       }
     },
     "npm:url@0.11.0": {
@@ -1220,11 +977,6 @@ SystemJS.config({
       "map": {
         "is-absolute": "npm:is-absolute@0.1.7",
         "isexe": "npm:isexe@1.1.2"
-      }
-    },
-    "npm:write-stream@0.4.3": {
-      "map": {
-        "readable-stream": "npm:readable-stream@0.0.4"
       }
     }
   }

@@ -11,8 +11,8 @@
     },
     "dependencies": {
       "pouchdb": "github:pouchdb/pouchdb@^5.3.2",
-      "pouchdb-authentication": "npm:pouchdb-authentication@^0.5.1",
-      "react-dom": "npm:react-dom@^15.0.1"
+      "react-dom": "npm:react-dom@^15.0.1",
+      "superlogin-client": "npm:superlogin-client@^0.2.0"
     },
     "devDependencies": {
       "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@^6.7.5",
@@ -70,9 +70,6 @@
         "map": {
           "_stream_transform": "readable-stream/transform"
         }
-      },
-      "npm:esprima@2.7.2": {
-        "jspmNodeConversion": false
       },
       "npm:inherits@2.0.1": {
         "ignore": [

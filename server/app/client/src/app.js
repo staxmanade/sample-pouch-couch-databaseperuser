@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import PouchDB from "pouchdb";
-import PouchDBAuth from 'pouchdb-authentication';
-PouchDB.plugin(PouchDBAuth);
 
 import AuthService from './AuthService.js';
 import config from './config.js';
-
-import TestData from './TestData.js';
 import RegistrationForm from './RegistrationForm.js';
 import LoginForm from './LoginForm.js';
 import LoginStatus from './LoginStatus.js';
+import TestData from './TestData.js';
 
 
 // if you want a localDb database to sync with...

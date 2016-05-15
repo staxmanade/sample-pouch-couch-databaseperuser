@@ -1,1 +1,4 @@
 couchdb-data/
+
+couchdb.stderr
+couchdb.stdout

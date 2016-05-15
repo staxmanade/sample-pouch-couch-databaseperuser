@@ -141,6 +141,8 @@ describe("pouch per user database server", function () {
     describe("when creating a new user", function () {
         var user;
         var userDbSecurity;
+        var userDbName;
+        var userDbUrl;
 
         var cleanupTestUser = function(){
             return deleteUser(testUsername).then(function() {
@@ -149,6 +151,9 @@ describe("pouch per user database server", function () {
         }
 
         before(function() {
+            userDbName = "userdb-" + toHex(testUsername);
+            userDbUrl = serverRootUrl + "/" + userDbName;
+
             return cleanupTestUser().then(function(){
                 return createUser(testUsername);
             }).then(function(user_) {
@@ -161,7 +166,7 @@ describe("pouch per user database server", function () {
                 })
             }).then(function(){
                 return new Promise(function(resolve, reject) {
-                    var url = serverRootUrl + "/userdb-" + toHex(testUsername) + "/_security";
+                    var url = userDbUrl + "/_security";
                     request({
                         uri: url,
                         json: true,
@@ -223,22 +228,29 @@ describe("pouch per user database server", function () {
                 .to.have.not.property('admins');
         });
 
-    });
 
-
-    describe("anonymous user", function(){
-        it("should not have access to /_all_dbs", function(){
-            return new Promise(function(resolve, reject){
-
+        describe("anonymous user", function() {
+            it("should not have access to /_all_dbs", function(done){
                 request({
                     uri: serverRootUrl + "/_all_dbs",
                     json: true,
                 }, function(err, res, body) {
                     //expect(err).to.not.be.null();
                     expect(body).to.deep.equal(["_replicator", "_users"]);
-                })
+                    done();
+                });
 
-            })
+            });
+
+            it("should not be able to put docs into user's db", function(done) {
+                request({
+                    uri: userDbUrl + "/anonymousDoc",
+                    json: true,
+                }, function(err, res, body) {
+                    expect(body).to.deep.equal({ error: 'unauthorized', reason: 'You are not authorized to access this db.' });
+                    done();
+                });
+            });
         });
     });
 

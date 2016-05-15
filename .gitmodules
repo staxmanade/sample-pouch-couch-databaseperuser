@@ -1,3 +1,0 @@
-[submodule "server/couchperuser"]
-	path = server/couchperuser
-	url = https://github.com/staxmanade/couchperuser
