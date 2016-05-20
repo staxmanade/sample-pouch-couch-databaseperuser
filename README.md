@@ -1,24 +1,16 @@
-# What is this?
-
-# :warning: Security?
-
-So the more I dug into this the more I learned that CouchDB by itself is not ready to become a straight api server (at least in the way I wanted to use it)...
-
-There are couch api's like `/_all_dbs` or `/_utils` which are accessable by the public. So in this example when a new database is created for each user - any public user can request the api and get a list of all users in the database. Not an ideal situation... (I hope this gets improved in CouchDB) - but in the meantime I'm looking into things like [superlogin](https://github.com/colinskow/superlogin) or [hood.ie](http://hood.ie).
-
-I still think couch in combination with pouch is a good toolset, but need to work through and setup an api server to block certain access to api's.
-
 ## Reason for being:
 
-This prototype came out of my personal need to play with [PouchDB](https://pouchdb.com) and [CouchDB](http://couchdb.apache.org) where I wanted to explore what it would take to allow each and every single user who **registered** with the applicaiton to acquire their own database. A database where each user (and only that user) has permission to the data in the database (except of course the server-admin user).
+This prototype came out of my personal need to play with [PouchDB](https://pouchdb.com) and [CouchDB](http://couchdb.apache.org) where I wanted to explore what it would take to allow each and every single user who **registered** with the applicaiton to acquire their own database (some bucket to store and syncronize their data across devices). A place where each user (and only that user) has permission to their data in the database (except of course the server-admin user).
 
-This model fits nicely with many types of applications where we want data to be syncronized across devices for a user and the Pouch/Couch combination seemed like it'd be a good fit. So I spent some time organizing this prototype to prove it out and see where I could take it.
+This model fits nicely with many types of applications where we want data to be syncronized across devices for a user and the PouchDB/CouchDB combination seemed like it'd be a good fit. So I spent some time organizing this prototype to prove it out and see where I could take it.
 
 I think this concept and infrastructure can be used in may other types of apps and I hope you find it useful as a reference. The current end goal of this prototype is to take my learnings from it and use in a [side project](http://staxmanade.com/apps/xbox-one-podcast/development/) or other app ideas I have cooking.
 
 This example is of-course very simplified (or at least I tried), but it shows a real-world client/server configuration with some interesting technologies.
 
-If you discover any potential security holes or other points of interest that you think would make this tutorial/sample easier to learn/work with, please open a [github issue](https://github.com/staxmanade/sample-pouch-couch-databaseperuser/issues) or I'd possibly a pull request.
+If you discover any potential security holes or other points of interest that you think would make this tutorial/sample easier to learn/work with, please open a [github issue](https://github.com/staxmanade/sample-pouch-couch-databaseperuser/issues) or even better a pull request.
+
+# What they don't tell you about CouchDB...
 
 
 # Project breakdown
@@ -39,7 +31,7 @@ If you discover any potential security holes or other points of interest that yo
 
 While the prototype is currently working, there are some interesting TODO's that I'd like to accomplish (including here instead of in the github issues for visibility).
 
-- [ ] Find a solution to password recovery (for the registered user). This may require a separate web/app/server where the server has admin rights. Possibly send email with token, if link clicked then (gather new password from user) and use admin account to reset password in db.
+- [ ] Build in support for password recovery. Find a solution to password recovery (for the registered user). This may require a separate web/app/server where the server has admin rights. Possibly send email with token, if link clicked then (gather new password from user) and use admin account to reset password in db.
 - [ ] Show how to deploy this to [Digital Ocean](https://www.digitalocean.com/?refcode=451940554550)
 
 
@@ -51,10 +43,11 @@ This project was pieced together with an assortment of the following tech.
 - Server
   - [CouchDB](http://couchdb.apache.org) (The back-end database)
   - [Docker](https://www.docker.com) (Some dev-opsey thing)
+  - [Superlogin](https://github.com/colinskow/superlogin) (Auth api's)
 
 - Client
   - [PouchDB](https://pouchdb.com) (The front-end database)
-  - [pouchdb-authentication](https://github.com/nolanlawson/pouchdb-authentication) (Easier CouchDB authentication)
+  - [superlogin-client](https://github.com/micky2be/superlogin-client) (front-end api to [superlogin](https://github.com/colinskow/superlogin))
   - [JSPM/SystemJS](http://jspm.io) (Browser Package Management)
   - [React](https://facebook.github.io/react) (U.I. Framework)
   - [Babel](https://babeljs.io) (Let's use the newer-cooler javascript)
@@ -62,14 +55,12 @@ This project was pieced together with an assortment of the following tech.
 <a name="#the-codes"></a>
 # Get the Codes
 
-The project is currently using a submodule (pointing to [staxmanade/couchperuser](https://github.com/staxmanade/couchperuser)). This repo hosts a plugin for couchdb that implements the couchperuser portion of the setup. The [server/Dockerfile](server/Dockerfile) specifically looks for this submodule source code to build into the container.
-
 To get the code submodule run
 
-1. Clone the repo `https://github.com/staxmanade/sample-pouch-couch-databaseperuser.git`
+1. Clone the repo `git clone https://github.com/staxmanade/sample-pouch-couch-databaseperuser.git`
 2. CD into `cd sample-pouch-couch-databaseperuser`
-3. `git submodule update  --init` <-- initialize the submodule.
-4. `cd ./server/test && npm install`
+3. `cd ./server/test && npm install`
+4.
 5. Once you follow the docker build steps below, you can update the test file to point to you're local couchdb instance and run `npm test` which will run some unit tests against the couch database.
 
 <a name="#the-server"></a>

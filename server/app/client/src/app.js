@@ -125,11 +125,7 @@ class App extends React.Component {
             <LoginStatus ref="loginStatus" onLogout={this.onLogout} authService={authService} />
             <br />
 
-            <RegistrationForm onRegister={this.registerNewUser} registrationError={this.state.registrationError}
-                name="jj"
-                password="jj"
-                email="jj@jj.com"
-                />
+            <RegistrationForm onRegister={this.registerNewUser} registrationError={this.state.registrationError} />
             <br />
             <br />
 
