@@ -94,6 +94,7 @@ export default class AuthService extends EventEmitter {
               confirmPassword: password
             }).then(res => {
                 console.log("registerNewUser: ", res);
+                return this.login(username, password).then(resolve);
             }).catch(err => {
                 console.error("registerNewUser error: ", err);
                 if(err && err.validationErrors) {
@@ -103,100 +104,34 @@ export default class AuthService extends EventEmitter {
                     return reject(errors);
                 }
                 reject("Registration Error:" + err.toString());
-//                reject(err)
             });
-        //     rootAuthDatabase.signup(username, password, {
-        //         metadata: {
-        //             email: email
-        //         }
-        //     }, (err, response) => {
-        //         console.log("signup:", err, response);
-        //         if (err) {
-        //             if (err.name === 'conflict') {
-        //                 // "batman" already exists, choose another username
-        //                 return reject(`${username} already exists. Choose another username.`);
-        //             } else if (err.name === 'forbidden') {
-        //                 // invalid username
-        //                 return reject(`Invalid username`);
-        //             } else {
-        //                 // HTTP error, cosmic rays, etc.
-        //                 return reject(`The planets are not aligned, some error has caused a misalignment. Try agian on another night.`);
-        //             }
-        //         } else {
-        //             this.login(username, password, (err, response) => {
-        //                 if (err) {
-        //                     if (err.name === 'unauthorized') {
-        //                         // name or password incorrect
-        //                         return reject(`Incorrect name or password`);
-        //                     } else {
-        //                         // HTTP error, cosmic rays, etc.
-        //                         return reject(`The planets are not aligned, some error has caused a misalignment. Try agian on another night.`);
-        //                     }
-        //                 } else {
-        //                     resolve(response);
-        //                 }
-        //             });
-        //         }
-        //     });
-
         });
     }
 
     login(username, password, callback) {
-        return new Promise((resolve, reject) => {
-            superlogin.login({
-                username: username,
-                password: password
-            }).then(user => {
-                console.log('login: user', user);
-                // pre-populate the currentUserPromise with the current user
-                this.currentUserPromise = Promise.resolve(user);
+        return superlogin.login({
+            username: username,
+            password: password
+        }).then(user => {
+            console.log('login: user', user);
+            // pre-populate the currentUserPromise with the current user
+            this.currentUserPromise = Promise.resolve(user);
 
-                this.setupDbSync(user);
-
-            }, reject);
-
-            // rootAuthDatabase.login(username, password, (err, user) => {
-            //     if (err) {
-            //         return reject(err);
-            //     }
-
-            //     // pre-populate the currentUserPromise with the current user
-            //     this.currentUserPromise = Promise.resolve(user);
-
-            //     console.log('login response', user);
-
-            //     this.setupDbSync(user.name);
-
-            //     return resolve(user);
-            // });
+            this.setupDbSync(user);
+            return user;
         });
     }
 
     logout() {
-        return Promise.reject("Not implemented yet");
 
-        // return new Promise((resolve, reject) => {
+        this.remoteSyncHandler && this.remoteSyncHandler.cancel();
+        this.remoteDb = null;
+        this.localDb = null;
+        this.currentUserPromise = null;
 
-        //     // clear any local handles to databases or user info
-        //     this.remoteSyncHandler && this.remoteSyncHandler.cancel();
-        //     this.remoteDb = null;
-        //     this.localDb = null;
-        //     this.currentUserPromise = null;
-
-        //     // execute the logout
-        //     rootAuthDatabase.logout((err, response) => {
-        //         console.log("logout", err, response);
-
-        //         this.emit('localDbChange');
-
-        //         if (err) {
-        //             // network error
-        //             return reject(err);
-        //         }
-        //         return resolve();
-        //     });
-        // });
+        return superlogin.logout().then(() => {
+            this.emit('localDbChange');
+        });
     }
 
     getCurrentUser() {
@@ -206,23 +141,5 @@ export default class AuthService extends EventEmitter {
         }
         console.log('getCurrentUser: session', session);
         return Promise.resolve(session);
-        // return this.currentUserPromise = this.currentUserPromise || new Promise((resolve, reject) => {
-        //     rootAuthDatabase.getSession((err, response) => {
-        //         if (err) {
-        //             if (err.status === 401) {
-        //                 // not authorized - so not logged in (no user)
-        //                 return resolve( null );
-        //             } else {
-        //                 // network error
-        //                 return reject(err);
-        //             }
-        //         }
-        //         var user = response.userCtx;
-        //         if (user.name) {
-        //             this.setupDbSync(user.name);
-        //         }
-        //         return resolve(user);
-        //     });
-        // });
     }
 }
