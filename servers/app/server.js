@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var config = {
   dbServer: {
     protocol: 'http://',
-    host: '192.168.99.100:5984',
+    host: 'couchdb:5984',
     user: 'admin',
     password: 'test-password',
     userDB: 'sl-users',

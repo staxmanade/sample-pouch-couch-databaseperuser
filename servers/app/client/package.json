@@ -16,7 +16,6 @@
     },
     "devDependencies": {
       "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@^6.7.5",
-      "core-js": "npm:core-js@^1.2.0",
       "plugin-babel": "npm:systemjs-plugin-babel@^0.0.9"
     },
     "peerDependencies": {
@@ -24,6 +23,7 @@
       "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
       "child_process": "github:jspm/nodelibs-child_process@^0.2.0-alpha",
       "constants": "github:jspm/nodelibs-constants@^0.2.0-alpha",
+      "core-js": "npm:core-js@^1.2.0",
       "crypto": "github:jspm/nodelibs-crypto@^0.2.0-alpha",
       "dgram": "github:jspm/nodelibs-dgram@^0.2.0-alpha",
       "dns": "github:jspm/nodelibs-dns@^0.2.0-alpha",

@@ -108,7 +108,7 @@ class App extends React.Component {
             } else {
                 // cosmic rays, a meteor, etc.
                 this.setState({
-                    loginError: `${err.name} --- ${err.message} --- ${err.reason}`
+                    loginError: `${err.error} --- ${err.message}`
                 });
             }
             this.refreshStatus();

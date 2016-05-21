@@ -30,7 +30,7 @@
             "restart": false,
             "sourceMaps": false,
             "outDir": null,
-            "localRoot": "${workspaceRoot}/server/app/",
+            "localRoot": "${workspaceRoot}/servers/app/",
             "remoteRoot": "/var/www/app/current"
         }
     ]

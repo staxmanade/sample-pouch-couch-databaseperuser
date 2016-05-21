@@ -9,7 +9,7 @@ var superConfig = {
   baseUrl: '/auth/',
   // A list of API endpoints to automatically add the Authorization header to
   // By default the host the browser is pointed to will be added automatically
-  endpoints: ['192.168.99.100:5984'],
+  endpoints: ['couchdb:5984'],
   // Set this to true if you do not want the URL bar host automatically added to the list
   noDefaultEndpoint: false,
   // Where to save your session token: localStorage ('local') or sessionStorage ('session'), default: 'local'
@@ -94,8 +94,16 @@ export default class AuthService extends EventEmitter {
               confirmPassword: password
             }).then(res => {
                 console.log("registerNewUser: ", res);
-            }, err => {
-                console.error("registerNewUser error: ", res);
+            }).catch(err => {
+                console.error("registerNewUser error: ", err);
+                if(err && err.validationErrors) {
+                    var errors = Object.keys(err.validationErrors).map(key => {
+                        return err.validationErrors[key];
+                    }).join(', ');
+                    return reject(errors);
+                }
+                reject("Registration Error:" + err.toString());
+//                reject(err)
             });
         //     rootAuthDatabase.signup(username, password, {
         //         metadata: {
