@@ -14,4 +14,4 @@ services:
     ports:
      - "5984:5984"
     volumes:
-     - ./couchdb/couchdb-data:/usr/local/var/lib/couchdb
+     - ./data/couchdb-data:/usr/local/var/lib/couchdb
