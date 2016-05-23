@@ -9,9 +9,16 @@ services:
      - ./app/:/var/www/app/current
     depends_on:
      - couchdb
+     - redis
   couchdb:
     build: ./couchdb/
     ports:
      - "5984:5984"
     volumes:
      - ./data/couchdb-data:/usr/local/var/lib/couchdb
+  redis:
+    build: ./redis/
+    ports:
+     - "6379"
+    volumes:
+     - ./data/redis-data/:/var/lib/redis
