@@ -1,4 +1,2 @@
-couchdb-data/
+data/
 
-couchdb.stderr
-couchdb.stdout

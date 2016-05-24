@@ -44,6 +44,7 @@ This project was pieced together with an assortment of the following tech.
   - [CouchDB](http://couchdb.apache.org) (The back-end database)
   - [Docker](https://www.docker.com) (Some dev-opsey thing)
   - [Superlogin](https://github.com/colinskow/superlogin) (Auth api's)
+  - [Redis](http://redis.io/)
 
 - Client
   - [PouchDB](https://pouchdb.com) (The front-end database)
@@ -188,3 +189,7 @@ An alternative to modifying the hosts file is to hard-code the path into the fol
 >
 > This will watch for changes, rebuild the `build.js` file whenever you make changes to the project. When you reload
 > the page it's much faster...
+
+
+TODO: describe redis permission issue (where it couln't save the dump.rdb files)
+also mention that the dump.rdb won't be written to very often when testing locally (which could cause you to get logged out if you kill the containers)...

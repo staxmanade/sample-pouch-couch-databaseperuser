@@ -18,7 +18,6 @@ export default class LoginStatus extends React.Component {
 
     refreshState() {
         this.props.authService.getCurrentUser().then(user => {
-            console.log("jj", user);
             this.setState({
                 loggedIn: !!(user && user.user_id) || false,
                 user: user

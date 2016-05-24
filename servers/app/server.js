@@ -40,12 +40,6 @@ var config = {
     redis: {
       // If url is supplied, port and host will be ignored
       url: 'redis://redis:6379',
-      port: 6379,
-      host: 'redis',
-      // If a UNIX domain socket is specified, port, host and url will be ignored
-      //unix_socket: '/tmp/echo.sock',
-      options: {},
-      password: process.env.REDIS_PASSWORD
     }
   }
 };
