@@ -117,6 +117,7 @@ class App extends React.Component {
 
     refreshStatus() {
         this.refs.loginStatus.refreshState();
+        this.forceUpdate();
     }
 
     render() {

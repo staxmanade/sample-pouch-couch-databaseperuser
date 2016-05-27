@@ -14,16 +14,17 @@ var config = {
   dbServer: {
     protocol: 'http://',
     host: 'couchdb:5984',
-    user: 'admin',
-    password: 'test-password',
+    user: process.env.COUCHDB_USER,
+    password: process.env.COUCHDB_PASSWORD,
     userDB: 'sl-users',
     couchAuthDB: '_users'
   },
   mailer: {
-    fromEmail: 'gmail.user@gmail.com',
+    fromEmail: process.env.FROM_EMAIL,
     options: {
       service: 'Gmail',
         auth: {
+          // TODO:
           user: 'gmail.user@gmail.com',
           pass: 'userpass'
         }
