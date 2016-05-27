@@ -10,43 +10,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var config = {
-  dbServer: {
-    protocol: 'http://',
-    host: 'couchdb:5984',
-    user: process.env.COUCHDB_USER,
-    password: process.env.COUCHDB_PASSWORD,
-    userDB: 'sl-users',
-    couchAuthDB: '_users'
-  },
-  mailer: {
-    fromEmail: process.env.FROM_EMAIL,
-    options: {
-      service: 'Gmail',
-        auth: {
-          // TODO:
-          user: 'gmail.user@gmail.com',
-          pass: 'userpass'
-        }
-    }
-  },
-  userDBs: {
-    defaultDBs: {
-      private: ['supertest']
-    }
-  },
-  session: {
-    // 'redis' or 'memory'
-    adapter: 'redis',
-    redis: {
-      // If url is supplied, port and host will be ignored
-      url: 'redis://redis:6379',
-    }
-  }
-};
+var superloginConfig = require('./superlogin.config');
 
 // Initialize SuperLogin
-var superlogin = new SuperLogin(config);
+var superlogin = new SuperLogin(superloginConfig);
 
 // Mount SuperLogin's routes to our app
 app.use('/auth', superlogin.router);
