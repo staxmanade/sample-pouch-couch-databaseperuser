@@ -29,10 +29,9 @@ chmod -R 0770 \
 chmod 664 /usr/local/etc/couchdb/*.ini
 chmod 775 /usr/local/etc/couchdb/*.d
 
-echo "Adding Admin";
-echo "$COUCHDB_USER : $COUCHDB_PASSWORD"
-
 if [ "$COUCHDB_USER" ] && [ "$COUCHDB_PASSWORD" ]; then
+	echo Configuring a couchdb admin with credentials passed through environment vars COUCHDB_USER and COUCHDB_PASSWORD.
+
 	# Create admin
 	printf "[admins]\n$COUCHDB_USER = $COUCHDB_PASSWORD\n" >> /usr/local/etc/couchdb/local.ini
 	chown couchdb:couchdb /usr/local/etc/couchdb/local.ini
