@@ -23,5 +23,7 @@ EXPOSE 3000
 # DEBUG PORT
 EXPOSE 5858
 
-#CMD nodemon server.js
-CMD ["node", "--debug=5858", "server.js"]
+## Allow debugging the node web app..
+#CMD ["nodemon", "--debug=5858", "server.js"]
+
+CMD ["nodemon", "server.js"]
